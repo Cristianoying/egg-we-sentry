@@ -7,16 +7,16 @@
  */
 const config = {};
 config.weSentry = {
-  dsn: '',
-  testTracesSampleRate: 1.0,
-  prodTracesSampleRate: 1.0,
+  config: { // sentry初始化参数
+    dsn: '', // dsn地址
+    servername: '',
+    release: '', // release
+    testTracesSampleRate: 1.0,
+    prodTracesSampleRate: 1.0,
+  },
   infoKeys: {
-    user: {
-
-    },
-    tags: {
-
-    },
+    headers: [ 'username', 'test' ],
+    extra: {},
   },
 };
 

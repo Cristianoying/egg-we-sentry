@@ -18,19 +18,18 @@ class AppBootHook {
     // 所有的配置已经加载完毕
     const { formatDate, assertLog } = util;
     const { env = 'dev', weSentry } = app.config;
-    const { dsn, prodTracesSampleRate, testTracesSampleRate, release, infoKeys: { config } } = weSentry;
+    const { config } = weSentry;
 
-    assertLog(dsn, '[egg-we-wentry] dsn must be in weSentry config!');
+    assertLog(config.dsn, '[egg-we-wentry] dsn must be set in weSentry config!');
     Sentry.init({
-      dsn,
       ...config,
-      release: release || `${env}-${formatDate(Date.now())}`,
-      tracesSampleRate: env === 'prod' ? prodTracesSampleRate : testTracesSampleRate,
+      release: config.release || `${env}-${formatDate(Date.now())}`,
+      tracesSampleRate: env === 'prod' ? config.prodTracesSampleRate || 1 : config.testTracesSampleRate || 1,
     });
     app.Sentry = Sentry;
   }
   async serverDidReady() {
-    console.log('[egg-we-sentry] egg-we-sentry插件加载完毕');
+    console.log('[egg-we-sentry] egg-we-sentry plugin is ready.');
     // 获取ctx
     const { app } = this;
 

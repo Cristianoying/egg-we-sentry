@@ -35,20 +35,20 @@ class InfoGetService extends Service {
     const tagKeys = this.app.config.weSentry.infoKeys.tags || {};
     return this.getVals(tagKeys);
   }
+  get headers() {
+    const headers = this.app.config.weSentry.infoKeys.headers || [];
+    return this.getVals(headers);
+  }
+
+  get extras() {
+    return this.app.config.weSentry.infoKeys.extras || null;
+  }
 
   getVals(keys) {
     const res = {};
-    for (const key in keys) {
-      const item = keys[key];
-      const reg = /([a-z]+)\|([a-z-]+)/i;
-      let caseWay = 'header',
-        caseKey = item;
-      if (reg.test(item)) {
-        caseWay = RegExp.$1; // header body query
-        caseKey = RegExp.$2;
-      }
-      res[key] = this.getVal(caseWay, caseKey);
-    }
+    keys.forEach(key => {
+      res[key] = this.getVal('header', key);
+    });
     return res;
   }
 }

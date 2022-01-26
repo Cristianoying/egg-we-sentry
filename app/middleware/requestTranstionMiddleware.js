@@ -18,12 +18,11 @@ module.exports = () => {
     const scope = new Sentry.Scope();
     fillBaseScope(scope, ctx);
     ctx.sentryScope = scope;
-
     const reqMethod = (ctx.method || '').toUpperCase();
     const reqUrl = ctx.url && stripUrlQueryAndFragment(ctx.url);
 
     const transaction = Sentry.startTransaction({
-      op: 'http.server',
+      op: 'request Transaction',
       name: `${reqMethod} ${reqUrl}`,
       ...traceParentData,
     });
@@ -47,12 +46,15 @@ module.exports = () => {
             transaction.setName(`${reqMethod} ${mountPath}${ctx._matchedRoute}`);
           }
           transaction.setHttpStatus(ctx.status);
-
+          const { body, query } = ctx.request;
+          const headerkeys = Object.keys(ctx.service.infoGetService.headers);
+          transaction.setData('body', body);
+          transaction.setData('query', query);
+          headerkeys.length && transaction.setTag('headers', ctx.service.infoGetService.headers);
+          ctx.service.infoGetService.extras && transaction.setTag('extras', ctx.service.infoGetService.extras);
           // sync to sentry top scope
           const currentStackTop = Sentry.getCurrentHub().getStackTop();
           currentStackTop.scope = Sentry.Scope.clone(scope);
-          transaction.setData('userdata', ctx.service.infoGetService.user);
-          transaction.setTag('usertag', ctx.service.infoGetService.user);
           transaction.finish();
         });
       });
