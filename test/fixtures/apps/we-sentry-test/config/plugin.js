@@ -2,5 +2,5 @@
 
 exports.weSentry = {
   enable: true,
-  package: '../../../../../',
+  package: 'egg-we-sentry',
 };
