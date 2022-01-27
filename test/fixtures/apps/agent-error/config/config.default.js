@@ -6,8 +6,8 @@ exports.keys = '123456';
 exports.weSentry = {
   config: { // sentry初始化参数
     dsn: 'http://12345@sentry.example.com/1', // dsn地址
-    servername: 'capture-servername',
-    release: 'capture-release', // release
+    servername: 'agent-error-servername',
+    release: 'agent-error-release', // release
     testTracesSampleRate: 1.0,
     prodTracesSampleRate: 1.0,
   },

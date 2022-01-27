@@ -155,4 +155,24 @@ describe('capture Error', async () => {
     assert.strictEqual(eventResult.exception.values[0].type, 'Error');
     assert.strictEqual(eventResult.exception.values[0].value, 'capture an Core logger exception');
   });
+
+  it('capture an Core logger exception', async () => {
+    app = mock.app({
+      baseDir: 'apps/agent-error',
+    });
+    await app.ready();
+    let eventResult = {};
+
+    const client = app.Sentry.getCurrentHub().getClient();
+    client._options.beforeSend = event => {
+      eventResult = { ...event };
+      return null;
+    };
+    await sleep(500);
+    console.log(eventResult, 'eventResult==================agent');
+    await app.close();
+    assert.strictEqual('asd', 'asd');
+    // assert.strictEqual(eventResult.exception.values[0].type, 'Error');
+    // assert.strictEqual(eventResult.exception.values[0].value, 'capture an Core logger exception');
+  });
 });
