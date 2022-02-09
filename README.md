@@ -53,17 +53,8 @@ exports.weSentry = {
     prodTracesSampleRate: 1.0,
   },
   infoKeys: {
-    user: { // user参数
-      // username1: 'header|username',
-      // username2: 'query|username',
-      // username3: 'body|username',
-      browser: 'header|sec-ch-ua',
-    },
-    tags: { // tag参数
-      // username1: 'header|username',
-      // username2: 'query|username',
-      // username3: 'body|username',
-    },
+    headers: [ 'username', 'test' ],
+    extra: {},
   },
 };
 ```
