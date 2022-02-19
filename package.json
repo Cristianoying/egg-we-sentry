@@ -47,12 +47,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-we-sentry.git"
+    "url": "git+https://github.com/Cristianoying/egg-we-sentry"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/Cristianoying/egg-we-sentry/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-we-sentry#readme",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
+  "homepage": "https://github.com/Cristianoying/egg-we-sentry#readme",
   "author": "wangying",
   "license": "MIT"
 }
