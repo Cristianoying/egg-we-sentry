@@ -53,7 +53,7 @@
     "url": "https://github.com/Cristianoying/egg-we-sentry/issues"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry":"https://github.com/Cristianoying/egg-we-sentry"
   },
   "homepage": "https://github.com/Cristianoying/egg-we-sentry#readme",
   "author": "wangying",
