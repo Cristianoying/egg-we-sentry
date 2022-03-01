@@ -24,31 +24,44 @@
 Description here.
 -->
 
-## Install
+## 依赖说明
 
-```bash
-$ npm i egg-we-sentry --save
-```
+此插件基于 [@sentry/node](https://docs.sentry.io/platforms/node/) 进行二次封装，针对egg机制进行定制化功能开发：
+### 依赖的 egg 版本
 
-## Usage
+egg-we-sentry 版本 | egg 1.x
+--- | ---
+1.x | 😁
+0.x | ❌
+
+
+## 开启插件
 
 ```js
-// {app_root}/config/plugin.js
+// config/plugin.js
 exports.weSentry = {
   enable: true,
   package: 'egg-we-sentry',
 };
 ```
 
-## Configuration
+## 使用场景
+egg 框架的 sentry 插件
 
+此插件基于 [@sentry/node](https://docs.sentry.io/platforms/node/) 进行二次封装，针对egg机制进行定制化功能开发：
+
+* 默认接入应用请求会话
+* 全局统一错误处理，并捕捉错误日志
+* 适配EggJS日志API
+* 适配EggJS日志Error分类
+
+## 详细配置
 ```js
-// {app_root}/config/config.default.js
-exports.weSentry = {
-  config: { // sentry初始化参数
-    dsn: '', // dsn地址
+config.weSentry = {
+  config: {
+    dsn: '',
     servername: '',
-    release: '', // release
+    release: '',
     testTracesSampleRate: 1.0,
     prodTracesSampleRate: 1.0,
   },
@@ -56,18 +69,16 @@ exports.weSentry = {
     headers: [ 'username', 'test' ],
     extra: {},
   },
-};
+}
 ```
+请到 [config/config.default.js](config/config.default.js) 查看详细配置项说明。
 
-see [config/config.default.js](config/config.default.js) for more detail.
+## 单元测试
 
-## Example
 
-<!-- example here -->
+## 提问交流
 
-## Questions & Suggestions
-
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+请到 [egg issues](https://github.com/Cristianoying/egg-we-sentry/issues) 异步交流。
 
 ## License
 

@@ -56,7 +56,21 @@ egg 框架的 sentry 插件
 * 适配EggJS日志Error分类
 
 ## 详细配置
-
+```js
+config.weSentry = {
+  config: {
+    dsn: '',
+    servername: '',
+    release: '',
+    testTracesSampleRate: 1.0,
+    prodTracesSampleRate: 1.0,
+  },
+  infoKeys: {
+    headers: [ 'username', 'test' ],
+    extra: {},
+  },
+}
+```
 请到 [config/config.default.js](config/config.default.js) 查看详细配置项说明。
 
 ## 单元测试
