@@ -1,11 +1,11 @@
 # egg-we-sentry
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Node.js CI](https://github.com/Cristianoying/egg-we-sentry/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Cristianoying/egg-we-sentry/actions/workflows/nodejs.yml)
 [![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
+
 
 [npm-image]: https://img.shields.io/npm/v/egg-we-sentry.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-we-sentry
@@ -19,7 +19,6 @@
 [snyk-url]: https://snyk.io/test/npm/egg-we-sentry
 [download-image]: https://img.shields.io/npm/dm/egg-we-sentry.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-we-sentry
-
 <!--
 Description here.
 -->

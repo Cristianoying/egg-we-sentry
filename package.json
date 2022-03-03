@@ -15,15 +15,16 @@
     "@sentry/tracing": "^6.16.1"
   },
   "devDependencies": {
-    "ko-sleep": "^1.1.4",
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
+    "coveralls": "^3.1.1",
     "egg": "^2.33.1",
     "egg-bin": "^4.11.0",
     "egg-ci": "^1.19.0",
     "egg-mock": "^4.2.0",
     "eslint": "^4.19.1",
-    "eslint-config-egg": "^7.0.0"
+    "eslint-config-egg": "^7.0.0",
+    "ko-sleep": "^1.1.4"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -53,7 +54,7 @@
     "url": "https://github.com/Cristianoying/egg-we-sentry/issues"
   },
   "publishConfig": {
-    "registry":"https://github.com/Cristianoying/egg-we-sentry"
+    "registry": "https://github.com/Cristianoying/egg-we-sentry"
   },
   "homepage": "https://github.com/Cristianoying/egg-we-sentry#readme",
   "author": "wangying",
