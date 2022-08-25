@@ -17,20 +17,17 @@ class AppBootHook {
     const { app } = this;
     // 所有的配置已经加载完毕
     const { formatDate, assertLog } = util;
-    const { env = 'dev', weSentry } = app.config;
-    const { config } = weSentry;
+    const { weSentry: { config } } = app.config;
 
     assertLog(config.dsn, '[egg-we-wentry] dsn must be set in weSentry config!');
     Sentry.init({
       ...config,
       release: config.release || `${env}-${formatDate(Date.now())}`,
-      tracesSampleRate: env === 'prod' ? config.prodTracesSampleRate || 1 : config.testTracesSampleRate || 1,
+      tracesSampleRate: config.tracesSampleRate || 1,
     });
     app.Sentry = Sentry;
   }
   async serverDidReady() {
-    console.log('[egg-we-sentry] egg-we-sentry plugin is ready.');
-    // 获取ctx
     const { app } = this;
 
     for (const [ name, logger ] of app.loggers.entries()) {
@@ -41,7 +38,7 @@ class AppBootHook {
       });
       logger.set('sentry', transport);
     }
-
+    console.log('[egg-we-sentry] egg-we-sentry plugin is ready.');
     app.on('error', (err, ctx) => {
       ctx = ctx || app.createAnonymousContext();
       ctx.service.sentryService.errorCapture(err);
