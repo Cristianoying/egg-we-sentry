@@ -61,8 +61,7 @@ config.weSentry = {
     dsn: '',
     servername: '',
     release: '',
-    testTracesSampleRate: 1.0,
-    prodTracesSampleRate: 1.0,
+    tracesSampleRate: 1.0,
   },
   infoKeys: {
     headers: [ 'username', 'test' ],
