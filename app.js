@@ -22,7 +22,7 @@ class AppBootHook {
     assertLog(config.dsn, '[egg-we-wentry] dsn must be set in weSentry config!');
     Sentry.init({
       ...config,
-      release: config.release || `${env}-${formatDate(Date.now())}`,
+      release: config.release || `${config.servername}-${formatDate(Date.now())}`,
       tracesSampleRate: config.tracesSampleRate || 1,
     });
     app.Sentry = Sentry;
