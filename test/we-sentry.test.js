@@ -31,7 +31,7 @@ describe('sentry config', () => {
     assert.strictEqual(dsn, 'http://12345@sentry.example.com/1');
     assert.strictEqual(servername, 'correctly-config-servername');
     assert.strictEqual(release, 'correctly-config-release');
-    assert.strictEqual(tracesSampleRate, 0.5);
+    assert.strictEqual(tracesSampleRate, 1);
   });
 });
 
