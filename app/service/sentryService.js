@@ -5,9 +5,8 @@ const Sentry = require('@sentry/node');
 
 class sentryService extends Service {
   errorCapture(e) {
-    // const { ctx } = this;
-    // const user = ctx.service.infoGetService.user;
-    // Sentry.setUser(user);
+    const { ctx } = this;
+    ctx.logger.error('egg-we-sentry |ERROR LOG| ', e);
     Sentry.captureException(e);
   }
 }

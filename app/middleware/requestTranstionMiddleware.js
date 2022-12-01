@@ -4,10 +4,10 @@ const {
   stripUrlQueryAndFragment,
 } = require('@sentry/tracing');
 const fillBaseScope = require('../util/fillBaseScope');
-const errKey = Symbol('SENTRY_ERROR_KEY')
+const errKey = Symbol('SENTRY_ERROR_KEY');
 
 module.exports = () => {
-  return async function (ctx, next) {
+  return async function(ctx, next) {
     let traceParentData;
     const reqMethod = (ctx.method || '').toUpperCase();
     const reqUrl = ctx.url && stripUrlQueryAndFragment(ctx.url);
@@ -42,6 +42,7 @@ module.exports = () => {
           currentStackTop.scope = Sentry.Scope.clone(scope);
           transaction.finish();
           if (ctx[errKey]) {
+            ctx.logger.error('egg-we-sentry |ERROR LOG| ', ctx[errKey]);
             Sentry.captureException(ctx[errKey]);
           }
         });

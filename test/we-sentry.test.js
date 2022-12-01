@@ -35,39 +35,6 @@ describe('sentry config', () => {
   });
 });
 
-// describe('context test', () => {
-//   let app;
-//   before(() => {
-//     app = mock.app({
-//       baseDir: 'apps/context',
-//     });
-//     return app.ready();
-//   });
-//   after(() => app.close());
-//   beforeEach(() => app.mockCsrf());
-
-//   it('context test', async () => {
-//     let eventResult = {};
-//     const client = app.Sentry.getCurrentHub().getClient();
-//     client._options.beforeSend = (event, hint) => {
-//       eventResult = { ...event, hint };
-//       return null;
-//     };
-//     client._options.beforeBreadcrumb = event => {
-//       eventResult = { ...event };
-//       return null;
-//     };
-
-//     await app.httpRequest()
-//       .post('/')
-//       .send({ a: 1, b: { c: 2 } })
-//       .expect(200);
-//     await sleep(1500);
-//     // assert.strictEqual(eventResult, {});
-//     console.log(eventResult, '============');
-//   });
-// });
-
 describe('capture Error', async () => {
   let app;
   before(() => {
@@ -80,24 +47,6 @@ describe('capture Error', async () => {
 
   afterEach(mock.restore);
 
-  it('capture an throw exception', async () => {
-    let eventResult = {};
-
-    const client = app.Sentry.getCurrentHub().getClient();
-    client._options.beforeSend = event => {
-      eventResult = { ...event };
-      return null;
-    };
-
-    const result = await app.httpRequest()
-      .get('/capture/throw?value=this is a throw Error');
-
-    assert.deepEqual(result.status, 200);
-    await sleep(500);
-
-    assert.strictEqual(eventResult.exception.values[0].type, 'Error');
-    assert.strictEqual(eventResult.exception.values[0].value, 'this is a throw Error');
-  });
 
   it('capture an Context logger exception', async () => {
     let eventResult = {};
@@ -154,25 +103,5 @@ describe('capture Error', async () => {
 
     assert.strictEqual(eventResult.exception.values[0].type, 'Error');
     assert.strictEqual(eventResult.exception.values[0].value, 'capture an Core logger exception');
-  });
-
-  it('capture an Core logger exception', async () => {
-    app = mock.app({
-      baseDir: 'apps/agent-error',
-    });
-    await app.ready();
-    let eventResult = {};
-
-    const client = app.Sentry.getCurrentHub().getClient();
-    client._options.beforeSend = event => {
-      eventResult = { ...event };
-      return null;
-    };
-    await sleep(500);
-    console.log(eventResult, 'eventResult==================agent');
-    await app.close();
-    assert.strictEqual('asd', 'asd');
-    // assert.strictEqual(eventResult.exception.values[0].type, 'Error');
-    // assert.strictEqual(eventResult.exception.values[0].value, 'capture an Core logger exception');
   });
 });

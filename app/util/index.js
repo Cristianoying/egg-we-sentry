@@ -1,5 +1,4 @@
 'use strict';
-const assert = require('assert');
 
 module.exports = {
 
@@ -54,8 +53,5 @@ module.exports = {
   },
   keys(s) {
     return Object.keys(s);
-  },
-  assertLog() {
-    assert(...arguments);
   },
 };

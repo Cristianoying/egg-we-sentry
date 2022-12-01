@@ -22,12 +22,6 @@ class CaptureController extends Controller {
     this.ctx.body = 'ok';
   }
 
-  async throw() {
-    const { value } = this.ctx.query;
-    throw new Error(value || 'test');
-    // this.ctx.body = 'ok';
-  }
-
   async prePostContext() {
     const { name } = this.ctx.query;
 

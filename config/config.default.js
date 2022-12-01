@@ -8,6 +8,7 @@
 const config = {};
 config.weSentry = {
   config: { // sentry初始化参数
+    enable: true,
     dsn: '', // dsn地址
     servername: '',
     release: '', // release
