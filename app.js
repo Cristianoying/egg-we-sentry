@@ -18,8 +18,9 @@ class AppBootHook {
     const { app } = this;
     // 所有的配置已经加载完毕
     const { formatDate } = util;
-    const { weSentry: { config } } = app.config;
-    const { enable } = config;
+    const { weSentry = {} } = app.config;
+    const { config = {} } = weSentry;
+    const { enable = true } = config;
     if (enable) {
       assert(config.dsn, '[egg-we-wentry] dsn must be set in weSentry config!');
       Sentry.init({

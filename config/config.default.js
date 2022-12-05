@@ -8,16 +8,15 @@
 const config = {};
 config.weSentry = {
   config: { // sentry初始化参数
-    enable: true,
+    enable: true, // 增加手动控制开关功能
     dsn: '', // dsn地址
-    servername: '',
+    servername: '', // release 不存在时会用作release `${config.servername}-${时间}`
     release: '', // release
-    testTracesSampleRate: 1.0,
-    prodTracesSampleRate: 1.0,
+    tracesSampleRate: 1.0, // 采样率
   },
   infoKeys: { // 额外携带的参数
     headers: [ 'username', 'test' ], // transtation从headers里面携带的参数
-    extra: {}, // 其他要携带的自定义参数
+    extra: {}, // 其他要携带的固定参数
   },
 };
 
