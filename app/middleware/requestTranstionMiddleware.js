@@ -24,6 +24,11 @@ module.exports = () => {
     try {
       await next();
     } catch (e) {
+      ctx.res.statusCode = 500;
+      ctx.body = e.options || {
+        code: -1,
+        message: e.message || '接口请求错误',
+      };
       ctx[errKey] = e || null;
     } finally {
       ctx.res.once('finish', () => {
@@ -42,8 +47,7 @@ module.exports = () => {
           currentStackTop.scope = Sentry.Scope.clone(scope);
           transaction.finish();
           if (ctx[errKey]) {
-            ctx.logger.error('egg-we-sentry |ERROR LOG| ', ctx[errKey]);
-            Sentry.captureException(ctx[errKey]);
+            ctx.service.sentryService.errorCapture(ctx[errKey]);
           }
         });
       });
